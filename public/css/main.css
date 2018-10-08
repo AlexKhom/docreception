@@ -1,0 +1,91 @@
+@font-face {
+    font-family: 'Intro Cond'; /* Имя шрифта */
+    src: url('../fonts/IntroCondensed/IntroCondBlack.otf') format('otf'); /* Путь к файлу со шрифтом */
+    font-weight: normal;
+    font-style: normal;
+}
+body, header, footer{
+    font-family: 'Intro Cond';
+    font-size: large;
+
+}
+.notoSerif{
+    font-family: 'Playfair Display', serif;
+}
+.lobsterFont{
+    font-family: 'Lobster', cursive;
+    font-size: larger;
+}
+h6{
+    color: #25b2fc;
+}
+h2{
+    color: #17436d;
+}
+/*font-family: 'Noto Sans', sans-serif;*/
+
+/*font-family: 'Noto Serif', serif;*/
+
+
+.navbar{
+    background-color: white;
+}
+
+.nav-link , .navbar-brand{
+    color: darkgray;
+    cursor: pointer;
+    text-align: center;
+}
+
+.nav-link{
+    margin-right: 1em !important;
+}
+
+.nav-item:hover{
+    background: #f4f4f4;
+}
+.nav-item:hover a{
+    color: #00c0ef !important;
+}
+#callUs{
+    border-radius: unset;
+    margin: unset;
+}
+
+.navbar-collapse{
+    justify-content: flex-end;
+}
+.navbar-toggler{
+    background:#fff !important;
+}
+.jumbotron{
+    background: #232c3e !important;
+    color: lightgray;
+    border-radius: 0 !important;
+    text-align: center;
+}
+.jumbotron hr{
+    background-color: lightgray;
+}
+.showText {
+    background-color: #f2f5f5;
+    padding-top: 5em;
+
+}
+.showText:hover{
+    background-color: #00c0ef;
+}
+a{
+    text-decoration: none!important;
+}
+.appointment{
+    background-color: #18B0FF;
+
+}
+.appointment a{
+    color: #fcf8e3;
+}
+.btn-outline-primary{
+    border: 1px solid #18B0FF!important;
+    color: #18B0FF !important;
+}
