@@ -17,4 +17,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('site-layouts');
+Route::prefix('admin')->middleware('role:superadministrator|administrator')->group(function () {
+    Route::get('/', 'Admin\AdminController@dashboard')->name('dashboard');
+    /*
+    Route::resource('/users', 'UserController');
+    Route::resource('/permissions', 'PermissionController', ['except' => 'destroy']);
+    Route::resource('/roles', 'RoleController', ['except' => 'destroy']);
+    Route::resource('/posts', 'PostController');
+    */
+});
+
+Route::group(['prefix'=>'reception', 'namespace'=>'Reception', 'middleware'=>['auth']], function(){
+    Route::resource('/', 'HomeController');
+});
+
+Route::get('/', 'HomeController@index')->name('site.index');
+
+
