@@ -1,6 +1,6 @@
 <?php
 
-namespace MyApp;
+namespace App;
 
 use JeroenNoten\LaravelAdminLte\Menu\Builder;
 use JeroenNoten\LaravelAdminLte\Menu\Filters\FilterInterface;

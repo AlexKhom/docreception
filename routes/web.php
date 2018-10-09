@@ -26,9 +26,13 @@ Route::prefix('admin')->middleware('role:superadministrator|administrator')->gro
     Route::resource('/posts', 'PostController');
     */
 });
-
+/*
 Route::group(['prefix'=>'reception', 'namespace'=>'Reception', 'middleware'=>['auth']], function(){
     Route::resource('/', 'HomeController');
+});
+*/
+Route::prefix('reception')->middleware('role:doctor|manager|user')->group(function (){
+    Route::get('/', 'Reception\HomeController@index');
 });
 
 Route::get('/', 'HomeController@index')->name('site.index');
