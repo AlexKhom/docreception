@@ -21,9 +21,10 @@ Route::prefix('admin')->middleware('role:superadministrator|administrator')->gro
     Route::get('/', 'Admin\AdminController@dashboard')->name('dashboard');
 
     Route::resource('/users', 'Admin\UserController');
+    Route::resource('/roles', 'Admin\RoleController', ['except' => 'destroy']);
     /*
     Route::resource('/permissions', 'PermissionController', ['except' => 'destroy']);
-    Route::resource('/roles', 'RoleController', ['except' => 'destroy']);
+
     Route::resource('/posts', 'PostController');
     */
 });

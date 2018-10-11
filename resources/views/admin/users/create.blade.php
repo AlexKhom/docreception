@@ -3,66 +3,66 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>Create New User</h1>
+    <h1 class="text-gray">Create New User</h1>
 @stop
 
 @section('content')
-    <hr>
-    <div class="container">
+    <div class="container my-card">
 
-        <form action="{{route('users.store')}}" method="POST">
-            {{csrf_field()}}
-            <div class="row">
-                <div class="col-8">
-                    <div class="form-group">
-                        <label for="name" class="label">Name</label>
-                        <input type="text" class="input" name="name" id="name">
-                    </div>
 
-                    <div class="form-group">
-                        <label for="email" class="label">Email:</label>
-                        <input type="email" class="input" name="email" id="email">
-                    </div>
+        @include('parts.error')
 
-                    <div class="form-group">
-                        <label for="password" class="label">Password</label>
-                        <input type="text" class="input" name="password" id="password" v-if="!auto_password" placeholder="Manually give a password to this user">
 
-                            <b-checkbox name="auto_generate" class="m-t-15" v-model="auto_password">Auto Generate Password</b-checkbox>
+    {!! Form::model($user, ['route'=>['users.store'], 'method'=>'POST', 'files'=>'true']) !!}
 
-                    </div>
-                </div> <!-- end of .column -->
 
-                <div class="col-4">
-                    <label for="roles" class="label">Roles:</label>
-                    <input type="hidden" name="roles" :value="rolesSelected" />
-
-                    @foreach ($roles as $role)
-                        <div class="field">
-                            <b-checkbox v-model="rolesSelected" :native-value="{{$role->id}}">{{$role->display_name}}</b-checkbox>
-                        </div>
-                    @endforeach
-                </div>
-            </div> <!-- end of .columns for forms -->
-            <div class="row">
-                <div class="col">
-                    <hr />
-                    <button class="btn btn-primary">Create New User</button>
-                </div>
+            <div class="form-group {!! !empty($errors->first('name')) ? 'has-error' : '' !!}">
+                {!! Form::label('name', 'User\'s name',['class'=>'text-default font-weight-bold']) !!}
+                {!! Form::text('name', null, ['class'=>'form-control input-sm']) !!}
             </div>
-        </form>
-    </div> <!-- end of -container -->
+
+            <div class="form-group {!! !empty($errors->first('email')) ? 'has-error' : '' !!}">
+                {!! Form::label('email', 'Email',['class'=>'text-default font-weight-bold']) !!}
+                {!! Form::email('email', null, ['class'=>'form-control input-sm']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('imagePath', 'User\'s Photo', ['class'=>'text-default font-weight-bold']) !!}
+                {!! Form::file('imagePath',null , ['class'=>'form-control']) !!}
+            </div>
+
+
+            <div class="form-group {!! !empty($errors->first('password')) ? 'has-error' : '' !!}">
+                {!! Form::label('password', 'Password',['class'=>'text-default font-weight-bold']) !!}
+                {!! Form::password('password', ['class'=>'form-control input-sm']) !!}
+
+            </div>
+
+
+            <div class="form-group">
+            {!! Form::label('roles', 'Choose Roles', ['class'=>'text-default font-weight-bold']) !!}
+            {!! Form::select('roles[]', $roles, $user->roles->pluck('id'), ['class'=>'form-control' , 'multiple' => true]) !!}
+
+             {{--Внимание! в select вторым параметром идет асс массив полученный методом pluck() см метод edit в Контроллере, Третьим параметром значение по умолчанию, здесь пустая строка --}}
+            </div>
+        <div class="row">
+            <div class="col-sm-10 pull-left">
+                <a href="{{route('users.index')}}" class="btn btn-info "><i class="glyphicon glyphicon-step-backward"></i>Back to User's list</a>
+            </div>
+            <div class="col-sm-2 pull-right">
+            {!! Form::submit('Сохранить', ['class'=>'btn btn-success']) !!}
+            </div>
+        </div>
+        {!! Form::close() !!}
+        </div>
 
 @stop
 
-@section('scripts')
+@push('js')
     <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                auto_password: true,
-                rolesSelected: [{!! old('roles') ? old('roles') : '' !!}]
-            }
-        });
+        (function($, undefined) {
+            $('select').select2(); // на этой странице select только один если больше то инспектируем стр и обращ по id
+
+        })(jQuery);
     </script>
-@endsection
+@endpush

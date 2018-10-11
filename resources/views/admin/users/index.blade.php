@@ -3,24 +3,24 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>Users list</h1>
+
 @stop
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container my-card">
         <div class="row">
-            <div class="col-lg-9">
-                <h1 class="title">Manage Users</h1>
+            <div class="col-sm-9 pull-left">
+                <h1 class="text-gray">Manage Users</h1>
             </div>
-            <div class="col-lg-3">
+            <div class="col-sm-3 pull-right">
                 <a href="{{route('users.create')}}" class="btn btn-success"><i class="glyphicon glyphicon-user"></i> Create New User</a>
             </div>
         </div>
-        <hr class="mt-0">
+        <hr>
 
-    <div class="box-body">
-                <table class="table table-condensed table-hover data-table" role="grid">
-                    <thead class="">
+    <div class="row">
+                <table class="table table-hover">
+                    <thead class="text-gray">
                     <tr>
                         <th>id</th>
                         <th>Name</th>
@@ -37,14 +37,20 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->created_at->toFormattedDateString()}}</td>
-                            <td class=""><a class="btn btn-info btn-md" href="{{route('users.show', $user->id)}}">View</a>  <a class="btn btn-warning btn-md" href="{{route('users.edit', $user->id)}}">Edit</a></td>
+                            <td>
+                                <div class="btn-group-md text-center">
+                                    <a  class="btn btn-info" href="{{route('users.show', $user->id)}}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
+                                    <a  class="btn btn-warning" href="{{route('users.edit', $user->id)}}"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                                </div>
+
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
 
     </div>
-        <div class="center-block">
+        <div class="text-center">
             {{$users->links()}}
         </div>
     </div>
