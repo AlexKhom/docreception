@@ -22,8 +22,10 @@ Route::prefix('admin')->middleware('role:superadministrator|administrator')->gro
 
     Route::resource('/users', 'Admin\UserController');
     Route::resource('/roles', 'Admin\RoleController', ['except' => 'destroy']);
+    Route::resource('/permissions', 'Admin\PermissionController', ['except' => 'destroy']);
+
     /*
-    Route::resource('/permissions', 'PermissionController', ['except' => 'destroy']);
+
 
     Route::resource('/posts', 'PostController');
     */
@@ -33,8 +35,9 @@ Route::group(['prefix'=>'reception', 'namespace'=>'Reception', 'middleware'=>['a
     Route::resource('/', 'HomeController');
 });
 */
-Route::prefix('reception')->middleware('role:doctor|manager|user')->group(function (){
+Route::prefix('reception')->middleware('role:superadministrator|administrator|doctor|manager|user')->group(function (){
     Route::get('/', 'Reception\HomeController@index');
+    Route::resource('/calendar','Reception\EventController');
 });
 
 Route::get('/', 'HomeController@index')->name('site.index');

@@ -3,18 +3,17 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="text-gray">Edit Role</h1>
+    <h1 class="text-gray">Edit Permission</h1>
 @stop
 
 @section('content')
     <div class="container my-card">
 
-
         @include('parts.error')
 
-        <h2>Role Details:</h2>
+        <h2>Permission Details:</h2>
 
-        {!! Form::model($role, ['route'=>['roles.update', $role->id], 'method'=>'PUT']) !!}
+        {!! Form::model($permission, ['route'=>['permissions.update', $permission->id], 'method'=>'PUT']) !!}
 
         <div class="form-group {!! !empty($errors->first('display_name')) ? 'has-error' : '' !!}">
             {!! Form::label('display_name', 'Name (Human Readable)',['class'=>'text-default font-weight-bold']) !!}
@@ -31,28 +30,15 @@
             {!! Form::text('description', null ,['class'=>'form-control input-sm']) !!}
         </div>
 
-        <div class="form-group">
-            {!! Form::label('permissions', 'Choose Permissions', ['class'=>'text-default font-weight-bold']) !!}
-            {!! Form::select('permissions[]', $permissions, $role->permissions->pluck('id'), ['class'=>'form-control' , 'multiple' => true]) !!}
-        </div>
         <div class="row">
             <div class="col-sm-10 pull-left">
-                <a href="{{route('roles.index')}}" class="btn btn-info "><i class="glyphicon glyphicon-step-backward"></i>Back to Role's list</a>
+                <a href="{{route('permissions.index')}}" class="btn btn-info "><i class="glyphicon glyphicon-step-backward"></i>Back to Permission's list</a>
             </div>
-            <div class="col-sm-1 pull-right">
-                {!! Form::submit('Save', ['class'=>'btn btn-success']) !!}
+            <div class="col-sm-2 pull-right text-right">
+                {!! Form::submit('Save changes', ['class'=>'btn btn-success']) !!}
             </div>
         </div>
         {!! Form::close() !!}
     </div>
 
 @stop
-
-@push('js')
-    <script>
-        (function($, undefined) {
-            $('select').select2(); // на этой странице select только один если больше то инспектируем стр и обращ по id
-
-        })(jQuery);
-    </script>
-@endpush

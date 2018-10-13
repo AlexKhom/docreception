@@ -12,7 +12,7 @@
        <!-- Left-aligned -->
         <div class="media">
             <div class="media-left">
-                <img src="{{url('public/images/admin-lte/icons8-admin-settings-male-50.png')}}" class="media-object" style="width:50px">
+                <img src="{{url('public/images/admin-lte/icons8-admin-settings-male-50.png')}}" class="media-object" style="width:50px;">
             </div>
 
             <div class="media-body">
