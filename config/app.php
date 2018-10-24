@@ -65,7 +65,7 @@ return [
     |
      */
 
-    'timezone' => 'UTC',
+    'timezone' => 'UTC+3',
 
     /*
     |--------------------------------------------------------------------------
@@ -182,6 +182,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         DevMarketer\LaraFlash\LaraFlashServiceProvider::class,
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
+
 
     ],
 

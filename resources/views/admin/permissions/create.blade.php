@@ -16,13 +16,13 @@
 
         {!! Form::model($permission, ['route'=>['permissions.store'], 'method'=>'POST']) !!}
 
-        <div class="form-group">
+        <div class="form-group " >
             <feildset> <legend style="color: whitesmoke">Choose the group of permission</legend>
             <p>{!! Form::radio('permission_type', 'basic', true); !!} <span style="color: whitesmoke; font-size: large">Basic Permission</span></p>
             <p>{!! Form::radio('permission_type', 'crud'); !!} <span style="color: whitesmoke; font-size: large">CRUD Permission</span></p></feildset>
         </div>
         <!-- start of basic form-input  -->
-        <div class="row" id="basicForm">
+        <div class="row " id="basicForm">
         <div class="form-group {!! !empty($errors->first('display_name')) ? 'has-error' : '' !!}">
             {!! Form::label('display_name', 'Name (Human Readable)',['class'=>'text-default font-weight-bold']) !!}
             {!! Form::text('display_name', null, ['class'=>'form-control input-sm', 'data-basic'=>'basic']) !!}
@@ -40,7 +40,7 @@
         </div>
         <!-- end of basic form-input  -->
 
-        <div  id="crud_Form">
+        <div   id="crud_Form">
             <div class="row">
                 <div class="form-group col-sm-4 {!! !empty($errors->first('resource')) ? 'has-error' : '' !!}">
                     {!! Form::label('resource', 'Resource',['class'=>'text-default font-weight-bold']) !!}
@@ -52,10 +52,10 @@
                     <div class="form-group">
                         <fieldset>
                             <legend>C.R.U.D.</legend>
-                            <p>{!! Form::checkbox('crud_selected', 'create') !!} <span>Create</span></p>
-                            <p>{!! Form::checkbox('crud_selected', 'read') !!} <span>Read</span></p>
-                            <p>{!! Form::checkbox('crud_selected', 'update') !!} <span>Update</span></p>
-                            <p>{!! Form::checkbox('crud_selected', 'delete') !!} <span>Delete</span></p>
+                            <p>{!! Form::checkbox('crud_selected[]', 'create') !!} <span>Create</span></p>
+                            <p>{!! Form::checkbox('crud_selected[]', 'read') !!} <span>Read</span></p>
+                            <p>{!! Form::checkbox('crud_selected[]', 'update') !!} <span>Update</span></p>
+                            <p>{!! Form::checkbox('crud_selected[]', 'delete') !!} <span>Delete</span></p>
                         </fieldset>
                     </div>
                 </div>
@@ -97,8 +97,10 @@
         (function($, undefined) {
             $( "#crud_Form").hide();
             $( "form input:radio" ).change(function () {
-                $( "#basicForm").toggle();
-                $( "#crud_Form").toggle();
+                $( "#basicForm").toggle(400);
+
+            }).change(function () {
+                $( "#crud_Form").toggle(400);
             });
 
             $( "#crud_Form input[type=checkbox]" )
